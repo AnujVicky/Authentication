@@ -9,17 +9,17 @@ class UserController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notic] = "You signed up successfully";
-       flash[:color]= "valid";
+      render :action => 'show'
      else
-       flash[:notic] = "Form is invalid";
-       flash[:color] = "Invalid";
+      render :action => 'new'
      end
-     render :action => 'new'
+
   end
 
 def user_params
-params.permit(:username, :email, :password, :authenticity_token);
+params.require(:user).permit(:username, :email, :password, :password_confirmation, :authenticity_token);
 end
 
+ def show
+ end
 end

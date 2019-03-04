@@ -2,14 +2,14 @@
 <div class="Sign_Form">
 
   <h1>Sign Up</h1>
-  <%= form_tag :action => 'create' do %>
-    <p> Username:</br> <%= text_field_tag :username%> </p>
-    <p> Email:</br> <%= text_field_tag :email%> </p>
-    <p> Password:</br> <%= password_field_tag :password%></p>
-    <p> Password Confirmation:</br> <%= password_field_tag :password  %> </p>
-    <%= submit_tag 'Signup' %>
+  <p>Click on this paragraph.</p>
+  <%= form_for @user, users_path => 'user_create', :validate => true do |f| %>
+    <p> Username:</br> <%= f.text_field :username, :required => true%> </p>
+    <p> Email:</br> <%= f.text_field :email, :required => true%> </p>
+    <p> Password:</br> <%= f.password_field :password, :required => true%></p>
+    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation,:required => true  %> </p>
+    <%= f.submit 'Signup' %>
     <%end%>
-
   <% if @user.errors.any? %>
     <ul class="Signup_Errors">
     <% for message_error in @user.errors.full_messages %>
